@@ -1,0 +1,912 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SENTINEL AI | Employee Threat Detector</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">S</div>
+
+            <div>
+                <h2>SENTINEL<span>AI</span></h2>
+                <small>THREAT INTELLIGENCE</small>
+            </div>
+        </div>
+
+        <div class="menu-label">MAIN MENU</div>
+
+        <nav class="navigation">
+
+            <a href="#overview" class="nav-link active">
+                <span>◈</span> Overview
+            </a>
+
+            <a href="#detection" class="nav-link">
+                <span>⌕</span> Threat Detection
+            </a>
+
+            <a href="#alerts" class="nav-link">
+                <span>⚠</span> Threat Alerts
+            </a>
+
+            <a href="#investigation" class="nav-link">
+                <span>🔍</span> Threat Investigation
+            </a>
+
+            <a href="#analytics" class="nav-link">
+                <span>▥</span> Analytics
+            </a>
+
+            <a href="#history" class="nav-link">
+                <span>◷</span> Activity History
+            </a>
+
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="system-status">
+                <span class="status-dot"></span>
+
+                <div>
+                    <strong>System Operational</strong>
+                    <small>AI engine connected</small>
+                </div>
+            </div>
+
+            <p>© 2026 SENTINEL AI</p>
+
+        </div>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- TOP BAR -->
+        <header class="topbar">
+
+            <div>
+                <p class="breadcrumb">SECURITY CENTER / OVERVIEW</p>
+                <h1>Security Overview</h1>
+            </div>
+
+            <div class="topbar-right">
+
+                <div class="live-indicator">
+                    <span class="status-dot"></span>
+                    LIVE MONITORING
+                </div>
+
+                <div class="profile">SA</div>
+
+            </div>
+
+        </header>
+
+
+        <!-- OVERVIEW -->
+        <section id="overview">
+
+            <div class="welcome-section">
+
+                <div>
+                    <p class="eyebrow">
+                        AI-POWERED SECURITY INTELLIGENCE
+                    </p>
+
+                    <h2>Protecting Your Digital Workforce.</h2>
+
+                    <p>
+                        Monitor employee activity, identify unusual behaviour
+                        and detect potential security threats.
+                    </p>
+                </div>
+
+                <div class="welcome-decoration">◈</div>
+
+            </div>
+
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">REAL-TIME INSIGHTS</p>
+                    <h2>Security Metrics</h2>
+                </div>
+
+                <span class="updated-label">DEMO DASHBOARD</span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Total Employees</span>
+                        <span class="stat-icon blue">♙</span>
+                    </div>
+
+                    <h2 id="employeeCount">900</h2>
+
+                    <p>Employees in sample dataset</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Activities Analyzed</span>
+                        <span class="stat-icon cyan">◈</span>
+                    </div>
+
+                    <h2 id="activityCount">0</h2>
+
+                    <p>Total saved activities</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Potential Threats</span>
+                        <span class="stat-icon red">⚠</span>
+                    </div>
+
+                    <h2 id="threatCount">0</h2>
+
+                    <p>Flagged for human review</p>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-top">
+                        <span>Normal Activities</span>
+                        <span class="stat-icon green">✓</span>
+                    </div>
+
+                    <h2 id="normalCount">0</h2>
+
+                    <p>Classified as normal</p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- THREAT DETECTION -->
+        <section id="detection" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">MACHINE LEARNING ENGINE</p>
+
+                    <h2>Analyze Employee Activity</h2>
+
+                    <p class="section-description">
+                        Enter activity details to identify potentially
+                        suspicious behaviour.
+                    </p>
+                </div>
+
+                <span class="ai-badge">✦ AI POWERED</span>
+
+            </div>
+
+
+            <div class="panel detection-panel">
+
+                <form id="threatForm">
+
+                    <div class="form-section-title">
+                        <span>01</span>
+                        Employee Information
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="department">Department</label>
+
+                            <select id="department" required>
+                                <option value="IT">IT</option>
+                                <option value="HR">HR</option>
+                                <option value="Finance">Finance</option>
+                                <option value="Sales">Sales</option>
+                                <option value="Engineering">Engineering</option>
+                                <option value="Marketing">Marketing</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="usual_location">Usual Location</label>
+
+                            <input
+                                type="text"
+                                id="usual_location"
+                                value="Bengaluru"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="location">Current Location</label>
+
+                            <input
+                                type="text"
+                                id="location"
+                                value="Bengaluru"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-section-title">
+                        <span>02</span>
+                        Login Behaviour
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="usual_login_hour">
+                                Usual Login Hour (0–23)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="usual_login_hour"
+                                min="0"
+                                max="23"
+                                value="9"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="login_hour">
+                                Current Login Hour (0–23)
+                            </label>
+
+                            <input
+                                type="number"
+                                id="login_hour"
+                                min="0"
+                                max="23"
+                                value="9"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="login_hour_deviation">
+                                Login Hour Deviation
+                            </label>
+
+                            <input
+                                type="number"
+                                id="login_hour_deviation"
+                                min="0"
+                                value="0"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-section-title">
+                        <span>03</span>
+                        Activity & Device Behaviour
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="files_downloaded">
+                                Files Downloaded
+                            </label>
+
+                            <input
+                                type="number"
+                                id="files_downloaded"
+                                min="0"
+                                value="10"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="failed_login_attempts">
+                                Failed Login Attempts
+                            </label>
+
+                            <input
+                                type="number"
+                                id="failed_login_attempts"
+                                min="0"
+                                value="0"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="sensitive_files_accessed">
+                                Sensitive Files Accessed
+                            </label>
+
+                            <input
+                                type="number"
+                                id="sensitive_files_accessed"
+                                min="0"
+                                value="0"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-section-title">
+                        <span>04</span>
+                        Security Indicators
+                    </div>
+
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+
+                            <label for="device_trusted">
+                                Trusted Device?
+                            </label>
+
+                            <select id="device_trusted">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="usb_connected">
+                                USB Connected?
+                            </label>
+
+                            <select id="usb_connected">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="location_unusual">
+                                Unusual Location?
+                            </label>
+
+                            <select id="location_unusual">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="after_hours">
+                                After-Hours Activity?
+                            </label>
+
+                            <select id="after_hours">
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="analyze-button"
+                        id="analyzeButton"
+                    >
+                        ✦ Analyze Activity
+                    </button>
+
+                </form>
+
+
+                <!-- PREDICTION RESULT -->
+                <div id="resultPanel" class="result-panel hidden">
+
+                    <div id="resultIcon" class="result-icon">◈</div>
+
+                    <div>
+
+                        <p class="eyebrow">AI ANALYSIS RESULT</p>
+
+                        <h2 id="resultTitle">Analysis Complete</h2>
+
+                        <p id="resultMessage"></p>
+
+                        <div class="probability">
+                            Model-estimated threat probability:
+
+                            <strong id="resultProbability">0%</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- THREAT ALERTS -->
+        <section id="alerts" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">SECURITY NOTIFICATIONS</p>
+
+                    <h2>Threat Alerts</h2>
+
+                    <p class="section-description">
+                        Activities flagged for further investigation.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div id="alertsList" class="empty-state">
+
+                    <div class="empty-icon">✓</div>
+
+                    <h3>No alerts yet</h3>
+
+                    <p>
+                        Analyzed activities flagged as potential threats
+                        will appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- THREAT INVESTIGATION -->
+        <section id="investigation" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">SECURITY RESPONSE CENTER</p>
+
+                    <h2>Threat Investigation</h2>
+
+                    <p class="section-description">
+                        Review detected threats, record investigation notes
+                        and update their resolution status.
+                    </p>
+                </div>
+
+                <span class="ai-badge">HUMAN REVIEW</span>
+
+            </div>
+
+
+            <!-- INVESTIGATION TABLE -->
+            <div class="panel table-panel">
+
+                <div class="investigation-header">
+                    <h3>Detected Threats</h3>
+
+                    <button
+                        type="button"
+                        class="analyze-button"
+                        id="refreshInvestigationsButton"
+                    >
+                        ↻ Refresh
+                    </button>
+                </div>
+
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>ACTIVITY ID</th>
+                                <th>DEPARTMENT</th>
+                                <th>LOCATION</th>
+                                <th>THREAT SCORE</th>
+                                <th>STATUS</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+
+
+                        <tbody id="investigationTable">
+
+                            <tr>
+                                <td colspan="6" class="table-empty">
+                                    Loading detected threats...
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+
+            <!-- INVESTIGATION DETAILS -->
+            <div
+                class="panel investigation-details"
+                id="investigationPanel"
+                hidden
+            >
+
+                <div class="section-heading">
+
+                    <div>
+                        <p class="eyebrow">THREAT REVIEW</p>
+                        <h2>Investigation Details</h2>
+                    </div>
+
+                    <span class="updated-label" id="investigationActivityId">
+                        ACTIVITY
+                    </span>
+
+                </div>
+
+
+                <div class="investigation-info-grid">
+
+                    <div class="investigation-info-item">
+                        <span>Department</span>
+                        <strong id="investigationDepartment">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>Current Location</span>
+                        <strong id="investigationLocation">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>Usual Location</span>
+                        <strong id="investigationUsualLocation">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>Threat Probability</span>
+                        <strong id="investigationProbability">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>Failed Login Attempts</span>
+                        <strong id="investigationFailedLogins">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>Files Downloaded</span>
+                        <strong id="investigationFilesDownloaded">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>USB Connected</span>
+                        <strong id="investigationUSB">-</strong>
+                    </div>
+
+                    <div class="investigation-info-item">
+                        <span>Trusted Device</span>
+                        <strong id="investigationDevice">-</strong>
+                    </div>
+
+                </div>
+
+
+                <form id="investigationForm">
+
+                    <div class="form-group">
+
+                        <label for="investigationStatus">
+                            Investigation Status
+                        </label>
+
+                        <select id="investigationStatus" required>
+
+                            <option value="NEW">NEW</option>
+
+                            <option value="UNDER INVESTIGATION">
+                                UNDER INVESTIGATION
+                            </option>
+
+                            <option value="RESOLVED">
+                                RESOLVED
+                            </option>
+
+                            <option value="FALSE ALARM">
+                                FALSE ALARM
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="investigationNotes">
+                            Investigation Notes
+                        </label>
+
+                        <textarea
+                            id="investigationNotes"
+                            rows="5"
+                            maxlength="5000"
+                            placeholder="Enter your investigation findings..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <p
+                        id="investigationMessage"
+                        role="status"
+                        aria-live="polite"
+                    ></p>
+
+
+                    <div class="investigation-actions">
+
+                        <button
+                            type="submit"
+                            class="analyze-button"
+                            id="saveInvestigationButton"
+                        >
+                            Save Investigation
+                        </button>
+
+                        <button
+                            type="button"
+                            class="analyze-button"
+                            id="closeInvestigationButton"
+                        >
+                            Close Details
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- ANALYTICS -->
+        <section id="analytics" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">SECURITY PERFORMANCE</p>
+                    <h2>Activity Analytics</h2>
+                </div>
+
+            </div>
+
+
+            <div class="analytics-grid">
+
+                <div class="panel analytics-card">
+
+                    <h3>Activity Distribution</h3>
+
+                    <p>Results from saved activities</p>
+
+                    <div class="chart-placeholder" id="activityChart">
+
+                        <div class="donut-chart"></div>
+
+                        <div class="chart-legend">
+
+                            <span>
+                                <i class="legend-dot green-dot"></i>
+                                Normal
+                            </span>
+
+                            <span>
+                                <i class="legend-dot red-dot"></i>
+                                Potential Threat
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel analytics-card">
+
+                    <h3>Detection Summary</h3>
+
+                    <p>Database statistics</p>
+
+                    <div class="summary-row">
+                        <span>Activities analyzed</span>
+                        <strong id="summaryTotal">0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Normal activities</span>
+                        <strong id="summaryNormal">0</strong>
+                    </div>
+
+                    <div class="summary-row">
+                        <span>Potential threats</span>
+                        <strong id="summaryThreat">0</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ACTIVITY HISTORY -->
+        <section id="history" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">AUDIT TRAIL</p>
+
+                    <h2>Activity History</h2>
+
+                    <p class="section-description">
+                        Previously analyzed employee activities.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="panel table-panel">
+
+                <div class="table-wrapper">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>TIME</th>
+                                <th>DEPARTMENT</th>
+                                <th>LOCATION</th>
+                                <th>RESULT</th>
+                                <th>THREAT SCORE</th>
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="historyTable">
+
+                            <tr>
+                                <td colspan="5" class="table-empty">
+                                    No activity analyzed yet.
+                                </td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- FOOTER -->
+        <footer class="footer">
+
+            <span>SENTINEL AI © 2026</span>
+
+            <span>AI-POWERED EMPLOYEE SECURITY MONITORING</span>
+
+        </footer>
+
+    </main>
+
+</div>
+
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
