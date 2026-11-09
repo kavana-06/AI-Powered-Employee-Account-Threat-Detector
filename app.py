@@ -1275,9 +1275,12 @@ def get_stats():
 # 24. START APPLICATION
 # =====================================================
 
-if __name__ == "__main__":
+# Initialize database whenever the application starts,
+# including when Gunicorn imports app.py.
+initialize_database()
 
-    initialize_database()
+
+if __name__ == "__main__":
 
     print("========================================")
     print("       SENTINEL AI SECURITY SYSTEM")
@@ -1291,6 +1294,6 @@ if __name__ == "__main__":
     print("========================================")
 
     app.run(
-        debug=True,
+        debug=False,
         port=5000
     )
