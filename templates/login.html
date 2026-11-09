@@ -1,0 +1,158 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENTINEL AI | Admin Login</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: #080d18;
+            color: #e8eefc;
+            font-family: Arial, sans-serif;
+        }
+
+        .login-card {
+            width: 100%;
+            max-width: 410px;
+            padding: 38px;
+            background: #111a2b;
+            border: 1px solid #263650;
+            border-radius: 16px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+        }
+
+        h1 {
+            font-size: 25px;
+            letter-spacing: 2px;
+            color: #55c7ff;
+        }
+
+        .subtitle {
+            color: #91a0b8;
+            font-size: 13px;
+            margin-top: 9px;
+        }
+
+        label {
+            display: block;
+            margin: 18px 0 8px;
+            font-size: 13px;
+            color: #c5d1e5;
+        }
+
+        input {
+            width: 100%;
+            padding: 13px;
+            background: #0a1220;
+            border: 1px solid #34445f;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #55c7ff;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            background: #168ac5;
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #0875ad;
+        }
+
+        .error {
+            margin-top: 15px;
+            padding: 11px;
+            background: #451d2a;
+            border: 1px solid #87394c;
+            border-radius: 7px;
+            color: #ffb6c2;
+            font-size: 13px;
+        }
+
+        .footer {
+            margin-top: 25px;
+            text-align: center;
+            color: #71819b;
+            font-size: 11px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-card">
+        <div class="logo">
+            <div class="logo-icon">🛡️</div>
+            <h1>SENTINEL AI</h1>
+            <p class="subtitle">Employee Account Threat Detection</p>
+        </div>
+
+        <form method="POST" action="{{ url_for('login') }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <label for="username">Admin Username</label>
+            <input
+                type="text"
+                id="username"
+                name="username"
+                placeholder="Enter admin username"
+                required
+                autocomplete="username"
+            >
+
+            <label for="password">Admin Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                placeholder="Enter admin password"
+                required
+                autocomplete="current-password"
+            >
+
+            <button type="submit">Secure Login</button>
+        </form>
+
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% for category, message in messages %}
+                <div class="error">{{ message }}</div>
+            {% endfor %}
+        {% endwith %}
+
+        <p class="footer">AUTHORIZED ADMIN ACCESS ONLY</p>
+    </div>
+</body>
+</html>

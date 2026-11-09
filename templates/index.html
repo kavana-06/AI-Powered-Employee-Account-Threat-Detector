@@ -1,7 +1,9 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -43,6 +45,10 @@
 
             <a href="#detection" class="nav-link">
                 <span>⌕</span> Threat Detection
+            </a>
+
+            <a href="#bulk-upload" class="nav-link">
+                <span>⇧</span> Bulk Upload
             </a>
 
             <a href="#alerts" class="nav-link">
@@ -101,6 +107,29 @@
 
                 <div class="profile">SA</div>
 
+                <form action="{{ url_for('logout') }}"
+                      method="POST"
+                      style="display:inline;">
+
+                    <input type="hidden"
+                           name="csrf_token"
+                           value="{{ csrf_token() }}">
+
+                    <button type="submit"
+                            style="
+                                padding:10px 16px;
+                                border:1px solid #ff5570;
+                                border-radius:8px;
+                                background:transparent;
+                                color:#ff5570;
+                                font-weight:600;
+                                cursor:pointer;
+                            ">
+                        Logout
+                    </button>
+
+                </form>
+
             </div>
 
         </header>
@@ -136,7 +165,7 @@
                     <h2>Security Metrics</h2>
                 </div>
 
-                <span class="updated-label">DEMO DASHBOARD</span>
+                <span class="updated-label">LIVE DATABASE</span>
 
             </div>
 
@@ -144,7 +173,6 @@
             <div class="stats-grid">
 
                 <div class="stat-card">
-
                     <div class="stat-top">
                         <span>Total Employees</span>
                         <span class="stat-icon blue">♙</span>
@@ -153,12 +181,10 @@
                     <h2 id="employeeCount">900</h2>
 
                     <p>Employees in sample dataset</p>
-
                 </div>
 
 
                 <div class="stat-card">
-
                     <div class="stat-top">
                         <span>Activities Analyzed</span>
                         <span class="stat-icon cyan">◈</span>
@@ -167,12 +193,10 @@
                     <h2 id="activityCount">0</h2>
 
                     <p>Total saved activities</p>
-
                 </div>
 
 
                 <div class="stat-card">
-
                     <div class="stat-top">
                         <span>Potential Threats</span>
                         <span class="stat-icon red">⚠</span>
@@ -181,12 +205,10 @@
                     <h2 id="threatCount">0</h2>
 
                     <p>Flagged for human review</p>
-
                 </div>
 
 
                 <div class="stat-card">
-
                     <div class="stat-top">
                         <span>Normal Activities</span>
                         <span class="stat-icon green">✓</span>
@@ -195,7 +217,6 @@
                     <h2 id="normalCount">0</h2>
 
                     <p>Classified as normal</p>
-
                 </div>
 
             </div>
@@ -203,14 +224,13 @@
         </section>
 
 
-        <!-- THREAT DETECTION -->
+        <!-- MANUAL THREAT DETECTION -->
         <section id="detection" class="content-section">
 
             <div class="section-heading">
 
                 <div>
                     <p class="eyebrow">MACHINE LEARNING ENGINE</p>
-
                     <h2>Analyze Employee Activity</h2>
 
                     <p class="section-description">
@@ -237,7 +257,6 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-
                             <label for="department">Department</label>
 
                             <select id="department" required>
@@ -248,35 +267,30 @@
                                 <option value="Engineering">Engineering</option>
                                 <option value="Marketing">Marketing</option>
                             </select>
-
                         </div>
 
 
                         <div class="form-group">
+                            <label for="usual_location">
+                                Usual Location
+                            </label>
 
-                            <label for="usual_location">Usual Location</label>
-
-                            <input
-                                type="text"
-                                id="usual_location"
-                                value="Bengaluru"
-                                required
-                            >
-
+                            <input type="text"
+                                   id="usual_location"
+                                   value="Bengaluru"
+                                   required>
                         </div>
 
 
                         <div class="form-group">
+                            <label for="location">
+                                Current Location
+                            </label>
 
-                            <label for="location">Current Location</label>
-
-                            <input
-                                type="text"
-                                id="location"
-                                value="Bengaluru"
-                                required
-                            >
-
+                            <input type="text"
+                                   id="location"
+                                   value="Bengaluru"
+                                   required>
                         </div>
 
                     </div>
@@ -291,55 +305,43 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-
                             <label for="usual_login_hour">
                                 Usual Login Hour (0–23)
                             </label>
 
-                            <input
-                                type="number"
-                                id="usual_login_hour"
-                                min="0"
-                                max="23"
-                                value="9"
-                                required
-                            >
-
+                            <input type="number"
+                                   id="usual_login_hour"
+                                   min="0"
+                                   max="23"
+                                   value="9"
+                                   required>
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="login_hour">
                                 Current Login Hour (0–23)
                             </label>
 
-                            <input
-                                type="number"
-                                id="login_hour"
-                                min="0"
-                                max="23"
-                                value="9"
-                                required
-                            >
-
+                            <input type="number"
+                                   id="login_hour"
+                                   min="0"
+                                   max="23"
+                                   value="9"
+                                   required>
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="login_hour_deviation">
                                 Login Hour Deviation
                             </label>
 
-                            <input
-                                type="number"
-                                id="login_hour_deviation"
-                                min="0"
-                                value="0"
-                                required
-                            >
-
+                            <input type="number"
+                                   id="login_hour_deviation"
+                                   min="0"
+                                   value="0"
+                                   required>
                         </div>
 
                     </div>
@@ -347,60 +349,48 @@
 
                     <div class="form-section-title">
                         <span>03</span>
-                        Activity & Device Behaviour
+                        Activity &amp; Device Behaviour
                     </div>
 
 
                     <div class="form-grid">
 
                         <div class="form-group">
-
                             <label for="files_downloaded">
                                 Files Downloaded
                             </label>
 
-                            <input
-                                type="number"
-                                id="files_downloaded"
-                                min="0"
-                                value="10"
-                                required
-                            >
-
+                            <input type="number"
+                                   id="files_downloaded"
+                                   min="0"
+                                   value="10"
+                                   required>
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="failed_login_attempts">
                                 Failed Login Attempts
                             </label>
 
-                            <input
-                                type="number"
-                                id="failed_login_attempts"
-                                min="0"
-                                value="0"
-                                required
-                            >
-
+                            <input type="number"
+                                   id="failed_login_attempts"
+                                   min="0"
+                                   value="0"
+                                   required>
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="sensitive_files_accessed">
                                 Sensitive Files Accessed
                             </label>
 
-                            <input
-                                type="number"
-                                id="sensitive_files_accessed"
-                                min="0"
-                                value="0"
-                                required
-                            >
-
+                            <input type="number"
+                                   id="sensitive_files_accessed"
+                                   min="0"
+                                   value="0"
+                                   required>
                         </div>
 
                     </div>
@@ -415,7 +405,6 @@
                     <div class="form-grid">
 
                         <div class="form-group">
-
                             <label for="device_trusted">
                                 Trusted Device?
                             </label>
@@ -424,12 +413,10 @@
                                 <option value="1">Yes</option>
                                 <option value="0">No</option>
                             </select>
-
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="usb_connected">
                                 USB Connected?
                             </label>
@@ -438,12 +425,10 @@
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
-
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="location_unusual">
                                 Unusual Location?
                             </label>
@@ -452,12 +437,10 @@
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
-
                         </div>
 
 
                         <div class="form-group">
-
                             <label for="after_hours">
                                 After-Hours Activity?
                             </label>
@@ -466,17 +449,14 @@
                                 <option value="0">No</option>
                                 <option value="1">Yes</option>
                             </select>
-
                         </div>
 
                     </div>
 
 
-                    <button
-                        type="submit"
-                        class="analyze-button"
-                        id="analyzeButton"
-                    >
+                    <button type="submit"
+                            class="analyze-button"
+                            id="analyzeButton">
                         ✦ Analyze Activity
                     </button>
 
@@ -489,7 +469,6 @@
                     <div id="resultIcon" class="result-icon">◈</div>
 
                     <div>
-
                         <p class="eyebrow">AI ANALYSIS RESULT</p>
 
                         <h2 id="resultTitle">Analysis Complete</h2>
@@ -498,11 +477,192 @@
 
                         <div class="probability">
                             Model-estimated threat probability:
-
                             <strong id="resultProbability">0%</strong>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BULK CSV AND PDF UPLOAD -->
+        <section id="bulk-upload" class="content-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <p class="eyebrow">BATCH SECURITY SCANNING</p>
+
+                    <h2>Bulk Employee Threat Detection</h2>
+
+                    <p class="section-description">
+                        Upload a CSV dataset or PDF containing employee
+                        activity records and analyze them using SENTINEL AI.
+                    </p>
+                </div>
+
+                <span class="ai-badge">✦ BULK AI SCAN</span>
+
+            </div>
+
+
+            <div class="panel detection-panel">
+
+                <form id="bulkUploadForm"
+                      enctype="multipart/form-data">
+
+                    <div class="form-section-title">
+                        <span>01</span>
+                        Upload Employee Activity File
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="bulkFile">
+                            Select CSV or PDF File
+                        </label>
+
+                        <input
+                            type="file"
+                            id="bulkFile"
+                            name="file"
+                            accept=".csv,.pdf,text/csv,application/pdf"
+                            required
+                        >
+
+                        <small style="
+                            display:block;
+                            margin-top:10px;
+                            color:#8b95a7;
+                        ">
+                            Supported formats: CSV and PDF · Maximum size: 16 MB
+                        </small>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="analyze-button"
+                        id="bulkAnalyzeButton"
+                    >
+                        ✦ Analyze Employee File
+                    </button>
+
+                </form>
+
+
+                <p id="bulkUploadMessage"
+                   role="status"
+                   aria-live="polite"></p>
+
+
+                <!-- BULK RESULTS -->
+                <div id="bulkResultsPanel" hidden>
+
+                    <div class="section-heading">
+
+                        <div>
+                            <p class="eyebrow">BULK SCAN SUMMARY</p>
+                            <h2>Analysis Results</h2>
+                        </div>
+
+                        <span class="updated-label" id="bulkFileName">
+                            FILE REPORT
+                        </span>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Total Records</span>
+                                <span class="stat-icon blue">▤</span>
+                            </div>
+
+                            <h2 id="bulkTotalCount">0</h2>
+
+                            <p>Records analyzed</p>
+                        </div>
+
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Potential Threats</span>
+                                <span class="stat-icon red">⚠</span>
+                            </div>
+
+                            <h2 id="bulkThreatCount">0</h2>
+
+                            <p>Flagged for human review</p>
+                        </div>
+
+
+                        <div class="stat-card">
+                            <div class="stat-top">
+                                <span>Normal Activities</span>
+                                <span class="stat-icon green">✓</span>
+                            </div>
+
+                            <h2 id="bulkNormalCount">0</h2>
+
+                            <p>Classified as normal</p>
                         </div>
 
                     </div>
+
+
+                    <div class="table-panel" style="margin-top:24px;">
+
+                        <h3 style="margin-bottom:16px;">
+                            Employee Scan Results
+                        </h3>
+
+                        <div class="table-wrapper">
+
+                            <table>
+
+                                <thead>
+                                    <tr>
+                                        <th>DEPARTMENT</th>
+                                        <th>LOCATION</th>
+                                        <th>RESULT</th>
+                                        <th>THREAT PROBABILITY</th>
+                                    </tr>
+                                </thead>
+
+
+                                <tbody id="bulkResultsTable">
+
+                                    <tr>
+                                        <td colspan="4" class="table-empty">
+                                            No results available.
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+
+                    <p style="
+                        margin-top:14px;
+                        color:#8b95a7;
+                        font-size:13px;
+                    ">
+                        AI predictions are screening signals, not proof
+                        of misconduct. Human review is required before action.
+                    </p>
 
                 </div>
 
@@ -518,7 +678,6 @@
 
                 <div>
                     <p class="eyebrow">SECURITY NOTIFICATIONS</p>
-
                     <h2>Threat Alerts</h2>
 
                     <p class="section-description">
@@ -556,7 +715,6 @@
 
                 <div>
                     <p class="eyebrow">SECURITY RESPONSE CENTER</p>
-
                     <h2>Threat Investigation</h2>
 
                     <p class="section-description">
@@ -570,19 +728,18 @@
             </div>
 
 
-            <!-- INVESTIGATION TABLE -->
             <div class="panel table-panel">
 
                 <div class="investigation-header">
+
                     <h3>Detected Threats</h3>
 
-                    <button
-                        type="button"
-                        class="analyze-button"
-                        id="refreshInvestigationsButton"
-                    >
+                    <button type="button"
+                            class="analyze-button"
+                            id="refreshInvestigationsButton">
                         ↻ Refresh
                     </button>
+
                 </div>
 
 
@@ -620,11 +777,9 @@
 
 
             <!-- INVESTIGATION DETAILS -->
-            <div
-                class="panel investigation-details"
-                id="investigationPanel"
-                hidden
-            >
+            <div class="panel investigation-details"
+                 id="investigationPanel"
+                 hidden>
 
                 <div class="section-heading">
 
@@ -633,7 +788,8 @@
                         <h2>Investigation Details</h2>
                     </div>
 
-                    <span class="updated-label" id="investigationActivityId">
+                    <span class="updated-label"
+                          id="investigationActivityId">
                         ACTIVITY
                     </span>
 
@@ -694,21 +850,12 @@
                         </label>
 
                         <select id="investigationStatus" required>
-
                             <option value="NEW">NEW</option>
-
                             <option value="UNDER INVESTIGATION">
                                 UNDER INVESTIGATION
                             </option>
-
-                            <option value="RESOLVED">
-                                RESOLVED
-                            </option>
-
-                            <option value="FALSE ALARM">
-                                FALSE ALARM
-                            </option>
-
+                            <option value="RESOLVED">RESOLVED</option>
+                            <option value="FALSE ALARM">FALSE ALARM</option>
                         </select>
 
                     </div>
@@ -730,28 +877,28 @@
                     </div>
 
 
-                    <p
-                        id="investigationMessage"
-                        role="status"
-                        aria-live="polite"
-                    ></p>
+                    <p id="investigationMessage"
+                       role="status"
+                       aria-live="polite"></p>
 
 
                     <div class="investigation-actions">
 
-                        <button
-                            type="submit"
-                            class="analyze-button"
-                            id="saveInvestigationButton"
-                        >
+                        <button type="submit"
+                                class="analyze-button"
+                                id="saveInvestigationButton">
                             Save Investigation
                         </button>
 
-                        <button
-                            type="button"
-                            class="analyze-button"
-                            id="closeInvestigationButton"
-                        >
+                        <button type="button"
+                                class="analyze-button"
+                                id="downloadReportButton">
+                            📄 Download PDF Report
+                        </button>
+
+                        <button type="button"
+                                class="analyze-button"
+                                id="closeInvestigationButton">
                             Close Details
                         </button>
 
@@ -843,7 +990,6 @@
 
                 <div>
                     <p class="eyebrow">AUDIT TRAIL</p>
-
                     <h2>Activity History</h2>
 
                     <p class="section-description">
@@ -861,7 +1007,6 @@
                     <table>
 
                         <thead>
-
                             <tr>
                                 <th>TIME</th>
                                 <th>DEPARTMENT</th>
@@ -869,7 +1014,6 @@
                                 <th>RESULT</th>
                                 <th>THREAT SCORE</th>
                             </tr>
-
                         </thead>
 
 
